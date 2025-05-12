@@ -1,0 +1,42 @@
+
+# Apache configuration file
+# Prevent directory listing
+Options -Indexes
+
+# Set default character set
+AddDefaultCharset UTF-8
+
+# Redirect to index.php if file doesn't exist
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+    
+    # If the requested file or directory doesn't exist
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    
+    # Rewrite to index.php
+    RewriteRule ^(.*)$ index.php [L,QSA]
+</IfModule>
+
+# Set security headers
+<IfModule mod_headers.c>
+    # Protect against XSS attacks
+    Header set X-XSS-Protection "1; mode=block"
+    
+    # Disable MIME type sniffing
+    Header set X-Content-Type-Options "nosniff"
+    
+    # Restrict site to being framed by other sites
+    Header set X-Frame-Options "SAMEORIGIN"
+</IfModule>
+
+# PHP settings
+<IfModule mod_php7.c>
+    # Maximum file upload size
+    php_value upload_max_filesize 10M
+    php_value post_max_size 10M
+    
+    # Hide PHP version
+    php_flag expose_php Off
+</IfModule>

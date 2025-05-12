@@ -1,0 +1,235 @@
+
+/* Main styles for Madrasah Financial System */
+
+/* General styling */
+:root {
+    --sidebar-width: 260px;
+    --header-height: 56px;
+    --primary-color: #0d6efd;
+    --secondary-color: #6c757d;
+    --success-color: #198754;
+    --danger-color: #dc3545;
+    --warning-color: #ffc107;
+    --info-color: #0dcaf0;
+    --light-color: #f8f9fa;
+    --dark-color: #212529;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f5f5;
+    min-height: 100vh;
+    padding-top: var(--header-height);
+}
+
+/* Wrapper */
+.wrapper {
+    display: flex;
+    width: 100%;
+    min-height: calc(100vh - var(--header-height));
+}
+
+/* Sidebar */
+.sidebar-wrapper {
+    width: var(--sidebar-width);
+    position: fixed;
+    left: 0;
+    height: calc(100% - var(--header-height));
+    top: var(--header-height);
+    background-color: #ffffff;
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+    z-index: 1030;
+    transition: all 0.3s;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+    overflow-y: auto;
+}
+
+.sidebar {
+    padding: 0.5rem;
+}
+
+.sidebar-header {
+    padding: 0.75rem;
+}
+
+.sidebar hr {
+    margin: 0.5rem 0;
+}
+
+.sidebar .nav-link {
+    color: var(--dark-color);
+    border-radius: 4px;
+    margin: 2px 0;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.9rem;
+}
+
+.sidebar .nav-link:hover {
+    background-color: rgba(13, 110, 253, 0.1);
+    color: var(--primary-color);
+}
+
+.sidebar .nav-link.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.sidebar .nav-link i {
+    width: 20px;
+    text-align: center;
+    margin-right: 5px;
+}
+
+.sidebar #masterDataSubmenu,
+.sidebar #financialSubmenu,
+.sidebar #settingsSubmenu {
+    padding-left: 2rem;
+}
+
+.sidebar-dropdown-toggle::after {
+    float: right;
+    margin-top: 8px;
+}
+
+/* Content */
+.content {
+    width: calc(100% - var(--sidebar-width));
+    margin-left: var(--sidebar-width);
+    padding: 2rem;
+    transition: all 0.3s;
+}
+
+/* When sidebar is toggled */
+.wrapper.toggled .sidebar-wrapper {
+    margin-left: calc(-1 * var(--sidebar-width));
+}
+
+.wrapper.toggled .content {
+    width: 100%;
+    margin-left: 0;
+}
+
+/* Cards */
+.card {
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 1.5rem;
+}
+
+.card-header {
+    background-color: rgba(0, 0, 0, 0.02);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Summary cards */
+.summary-card .card-body {
+    display: flex;
+    align-items: center;
+}
+
+.summary-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+}
+
+.summary-icon i {
+    font-size: 24px;
+    color: white;
+}
+
+.summary-details {
+    flex: 1;
+}
+
+.summary-value {
+    font-size: 1.75rem;
+    margin: 0;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.summary-label {
+    color: var(--secondary-color);
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+/* Page title */
+.page-title {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+/* Forms */
+.form-label {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #86b7fe;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+/* Tables */
+.table th {
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* Footer */
+.footer {
+    background: #f8f9fa;
+    padding: 1rem 0;
+    text-align: center;
+    font-size: 0.85rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    :root {
+        --sidebar-width: 230px;
+    }
+    
+    .sidebar-wrapper {
+        margin-left: calc(-1 * var(--sidebar-width));
+    }
+    
+    .content {
+        width: 100%;
+        margin-left: 0;
+    }
+    
+    .wrapper.toggled .sidebar-wrapper {
+        margin-left: 0;
+    }
+    
+    .summary-value {
+        font-size: 1.5rem;
+    }
+}
+
+/* Print styles */
+@media print {
+    .sidebar-wrapper, .navbar, .footer, .no-print {
+        display: none !important;
+    }
+    
+    .content {
+        width: 100% !important;
+        margin-left: 0 !important;
+        padding: 0 !important;
+    }
+    
+    body {
+        padding-top: 0;
+    }
+}
